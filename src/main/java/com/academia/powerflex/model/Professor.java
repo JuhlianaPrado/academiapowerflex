@@ -1,30 +1,36 @@
 package com.academia.powerflex.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
-
+@Entity
+@Table(name = "professores")
 public class Professor {
-
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(nullable = false, length = 100)
     private String nome;
-
+    @Column(nullable = false, length = 20)
     private String cpf;
-
+    @Column(nullable = false, length = 20)
     private String cargo;
-
+    @Column(nullable = false, length = 20)
     private String telefone;
+    @Column(nullable = false, length = 45)
     private String email;
+    @Column(nullable = false, length = 250)
     private String senha;
+    @Column(nullable = false, length = 20)
     private String aula;
     private String dtNascimento;
 
     private String dtAdmi;
-
+    @Column(nullable = false, length = 100)
     private String endereco;
-
+    @Column(nullable = false, length = 100)
     private String bairro;
-
+    @Column(nullable = false, length = 2)
     private String uf;
     private boolean codStatus;
 
@@ -146,5 +152,12 @@ public class Professor {
 
     public void setCodStatus(boolean codStatus) {
         this.codStatus = codStatus;
+    }
+
+    public String getMensagemErro() {
+        return mensagemErro;
+    }
+    public boolean validarProfessor(){
+        return isValid;
     }
 }
