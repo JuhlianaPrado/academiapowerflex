@@ -1,7 +1,7 @@
 package com.academia.powerflex.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "planos")
@@ -16,7 +16,6 @@ public class Plano {
     private String descricao;
     @Column(nullable = true, columnDefinition = "DECIMAL(5,2)")
     private String valor;
-    private boolean codStatus;
 
     // Atributos de apoio
     // Transient-> representa um atributo que NÃO CORRESPONDE A UMA COLUNA DA TABELA
@@ -56,14 +55,6 @@ public class Plano {
 
     public void setValor(String valor) {
         this.valor = valor;
-    }
-
-    public boolean isCodStatus() {
-        return codStatus;
-    }
-
-    public void setCodStatus(boolean codStatus) {
-        this.codStatus = codStatus;
     }
 
     public String getMensagemErro() {

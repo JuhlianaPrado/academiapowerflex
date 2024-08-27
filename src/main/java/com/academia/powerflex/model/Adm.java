@@ -1,7 +1,7 @@
 package com.academia.powerflex.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -22,6 +22,9 @@ public class Adm {
     private String senha;
     @Column(nullable = false, length = 20)
     private String rg;
+
+    @Column(nullable = false, length = 20)
+    private String cargo;
     @Column(nullable = false, length = 20)
     private String telefone;
     private String dtNascimento;
@@ -88,6 +91,14 @@ public class Adm {
 
     public void setRg(String rg) {
         this.rg = rg;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
     public String getTelefone() {

@@ -2,7 +2,7 @@ package com.academia.powerflex.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "usuarios")
@@ -149,4 +149,5 @@ public class Usuario {
     public boolean validarUsuario(){
         return isValid;
     }
+
 }
