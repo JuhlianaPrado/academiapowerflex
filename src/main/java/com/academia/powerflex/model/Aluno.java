@@ -1,14 +1,18 @@
 package com.academia.powerflex.model;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
-@Table(name = "usuarios")
-public class Usuario {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Table(name = "aluno")
+public class Aluno<aluno> {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false, length = 100)
     private String nome;
@@ -17,26 +21,30 @@ public class Usuario {
     @Column(nullable = false, length = 45)
     private String email;
     @Column(nullable = false, length = 250)
-    private String senha;
+    private String password;
     @Column(nullable = false, length = 20)
-    private String telefone;
-    @Column(nullable = false, length = 20)
-    private String aula;
-    private String dtNascimento;
+    private String rg;
+    private String dtNasc;
     private String dtAdmi;
     @Column(nullable = false, length = 100)
-    private String endereco;
+    private String rua;
     @Column(nullable = false, length = 100)
     private String bairro;
     @Column(nullable = false, length = 2)
     private String uf;
     private boolean codStatus;
-    // Atributos de apoio
-    // Transient-> representa um atributo que NÃO CORRESPONDE A UMA COLUNA DA TABELA
 
 
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Plano> plano = new ArrayList<Plano>();
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Telefone> telefone = new ArrayList<Telefone>();
+
+    @Transient
     private String mensagemErro = "";
-
+    @Transient
     private boolean isValid = true;
 
     public Long getId() {
@@ -71,36 +79,28 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getRg() {
+        return rg;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setRg(String rg) {
+        this.rg = rg;
     }
 
-    public String getAula() {
-        return aula;
+    public String getDtNasc() {
+        return dtNasc;
     }
 
-    public void setAula(String aula) {
-        this.aula = aula;
-    }
-
-    public String getDtNascimento() {
-        return dtNascimento;
-    }
-
-    public void setDtNascimento(String dtNascimento) {
-        this.dtNascimento = dtNascimento;
+    public void setDtNasc(String dtNasc) {
+        this.dtNasc = dtNasc;
     }
 
     public String getDtAdmi() {
@@ -111,12 +111,12 @@ public class Usuario {
         this.dtAdmi = dtAdmi;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getRua() {
+        return rua;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setRua(String rua) {
+        this.rua = rua;
     }
 
     public String getBairro() {
@@ -143,11 +143,41 @@ public class Usuario {
         this.codStatus = codStatus;
     }
 
+    public List<Plano> getPlano() {
+        return plano;
+    }
+
+    public void setPlano(List<Plano> plano) {
+        this.plano = plano;
+    }
+
+    public List<Telefone> getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(List<Telefone> telefone) {
+        this.telefone = telefone;
+    }
+
     public String getMensagemErro() {
         return mensagemErro;
     }
-    public boolean validarUsuario(){
+    public boolean validarAluno() {
         return isValid;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass() )return false;
+        Aluno aluno = (Aluno) o;
+        return Objects.equals(id, aluno.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
 }
+
