@@ -22,17 +22,6 @@ public class Aluno<aluno> {
     private String email;
     @Column(nullable = false, length = 250)
     private String password;
-    @Column(nullable = false, length = 20)
-    private String rg;
-    private String dtNasc;
-    private String dtAdmi;
-    @Column(nullable = false, length = 100)
-    private String rua;
-    @Column(nullable = false, length = 100)
-    private String bairro;
-    @Column(nullable = false, length = 2)
-    private String uf;
-    private boolean codStatus;
 
 
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL)
@@ -85,62 +74,6 @@ public class Aluno<aluno> {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getRg() {
-        return rg;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
-    }
-
-    public String getDtNasc() {
-        return dtNasc;
-    }
-
-    public void setDtNasc(String dtNasc) {
-        this.dtNasc = dtNasc;
-    }
-
-    public String getDtAdmi() {
-        return dtAdmi;
-    }
-
-    public void setDtAdmi(String dtAdmi) {
-        this.dtAdmi = dtAdmi;
-    }
-
-    public String getRua() {
-        return rua;
-    }
-
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-    public String getUf() {
-        return uf;
-    }
-
-    public void setUf(String uf) {
-        this.uf = uf;
-    }
-
-    public boolean isCodStatus() {
-        return codStatus;
-    }
-
-    public void setCodStatus(boolean codStatus) {
-        this.codStatus = codStatus;
     }
 
     public List<Plano> getPlano() {
