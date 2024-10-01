@@ -29,7 +29,7 @@ public class Aluno<aluno> {
     private List<Plano> plano = new ArrayList<Plano>();
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<Telefone> telefone = new ArrayList<Telefone>();
+    private List<Telefone> telefone_aluno = new ArrayList<Telefone>();
 
     @Transient
     private String mensagemErro = "";
@@ -85,11 +85,11 @@ public class Aluno<aluno> {
     }
 
     public List<Telefone> getTelefone() {
-        return telefone;
+        return telefone_aluno;
     }
 
     public void setTelefone(List<Telefone> telefone) {
-        this.telefone = telefone;
+        this.telefone_aluno = telefone;
     }
 
     public String getMensagemErro() {

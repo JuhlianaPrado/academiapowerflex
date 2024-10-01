@@ -14,7 +14,7 @@ public class Telefone {
 
        @Column(nullable = false, length = 15)
         private String numero;
-        private boolean codStatus;
+
 
     @ManyToOne (cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_aluno", referencedColumnName = "id", nullable = false)
@@ -48,13 +48,6 @@ public class Telefone {
             this.numero = numero;
         }
 
-        public boolean isCodStatus() {
-            return codStatus;
-        }
-
-        public void setCodStatus(boolean codStatus) {
-            this.codStatus = codStatus;
-        }
 
     public Aluno getAluno() {
         return aluno;
